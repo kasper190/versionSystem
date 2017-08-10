@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".topic_version").show();
+        $(".topic_change").hide();
+        $(".topic_custom").hide();
+    });
+    $(function() {
+        $("#topic").on("change",function() {
+            if ($(this).val() === "Version") {
+                $(".topic_version").show();
+                $(".topic_change").hide();
+                $(".topic_custom").hide();
+            }
+            if ($(this).val() === "Changes") {
+                $(".topic_version").hide();
+                $(".topic_change").show();
+                $(".topic_custom").hide();
+            }
+            if ($(this).val() === "Other") {
+                $(".topic_version").hide();
+                $(".topic_change").hide();
+                $(".topic_custom").show();
+            }
+        });
+    });
+</script>
+
+<div class="row page-header">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2>
+            Contact
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% if form.non_field_errors %}
+            <div id="login-alert" class="alert alert-danger col-sm-12">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <form class="contact" method="post" action="{% url 'version:contact' %}">
+        {% csrf_token %}
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                <label class="col-sm-12 control-label">Topic</label>
+                {{ form.topic }}
+                <label class="col-sm-12 control-label topic_version">Choose version</label>
+                {{ form.topic_version }}
+                <label class="col-sm-12 control-label topic_change">Enter the change ID</label>
+                {{ form.topic_change }}
+                <label class="col-sm-12 control-label topic_custom">Other topic</label>
+                {{ form.topic_custom }}
+                {{ form.name }}
+                {{ form.email }}
+                {{ form.phone_number }}
+            </div>
+            <div class="col-sm-6 form-group">
+                {{ form.message }}
+            </div>
+            <div class="col-sm-12 form-group text-center">
+                <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </div>
+        </form>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+            <small>* Required fields</small>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

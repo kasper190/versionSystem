@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row page-header">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2>
+            Registration
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4">
+        <div class="panel-body login">
+        {% if form.non_field_errors %}
+            <div id="login-alert" class="alert alert-danger col-sm-12">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+            <form id="loginform" class="form-horizontal" role="form" method="post" action="{% url 'accounts:register' %}">
+            {% csrf_token %}
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form.username }}
+                </div>
+                <span class="text-danger">{{ form.username.errors }}</span>
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    {{ form.password1 }}
+                </div>
+                <span class="text-danger">{{ form.password1.errors }}</span>
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    {{ form.password2 }}
+                </div>
+                <span class="text-danger">{{ form.password2.errors }}</span>
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    {{ form.email }}
+                </div>
+                <span class="text-danger">{{ form.email.errors }}</span>
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form.first_name }}
+                </div>
+                <span class="text-danger">{{ form.first_name.errors }}</span>
+                <div class="input-group form">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form.last_name }}
+                </div>
+
+                {% if request.user.is_staff %}
+                <span class="text-danger">{{ form.client.errors }}</span>
+                <div class="form-group form">
+                    <label class="col-sm-2 control-label">Client</label>
+                    <div class="col-sm-10">
+                        {{ form.client }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <span class="text-danger">{{ form.last_name.errors }}</span>
+                <div class="form-group button">
+                    <div class="col-sm-12 controls">
+                      <input type="submit" id="btn-login" class="btn btn-success" value="Register">
+                      <a id="btn-cancel" href="{% url 'accounts:user-list' %}" class="btn btn-warning">Cancel</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 text-right">
+                        <small>* Required fields</small>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+
+{% endblock content %}

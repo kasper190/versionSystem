@@ -1,0 +1,15 @@
+<p>Author:  <b>{{ name }}</b><br>
+E-mail:  <b>{{ email }}</b><br>
+Phone number:  <b>{{ phone_number }}</b><br>
+Topic:  <b>{{ topic }}</b><br>
+{% if topic_version %}
+    Version:  <b>{{ topic_version }}</b><br>
+{% endif %}
+{% if topic_change %}
+    Change ID:  <b>{{ topic_change }}</b><br>
+{% endif %}
+{% if topic_custom %}
+    Topic content:  <b>{{ topic_custom }}</b><br>
+{% endif %}
+Message:<p>
+<p>{{ message }}</p>

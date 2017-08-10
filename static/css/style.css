@@ -1,0 +1,114 @@
+/* bootstrap override */
+
+.navbar-fixed-left {
+  width: 225px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}
+.navbar-fixed-left .navbar-nav > li {
+  float: none;
+  width: 224px;
+}
+.navbar-fixed-left .navbar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+.page-header {
+    margin-top: 10px;
+}
+.container {
+	padding-left: 225px;
+}
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 225px;
+}
+
+/* Others */
+
+.logo {
+	margin-bottom: 75px;
+}
+.big_message_box {
+    padding: 12em 0em 12em 0em;
+    text-align: center;
+}
+.big_message_box .icon {
+    font-size: 100px;
+}
+.page-header .search {
+    margin-top: 20px;
+}
+.form-group .margin-bottom-small {
+    margin-bottom: 5px;
+}
+
+.form-inline .form-group .search-form {
+    width: 382px;
+}
+.highlight {
+    background: rgba(255, 230, 0, 0.5);
+    padding: 3px 0px;
+}
+
+/* Changes */
+
+.table-responsive .changes {
+    white-space: pre;
+}
+.form-inline .form-group .filter-date-form {
+    width: 120px;
+}
+
+/* Version */
+
+.id-col {
+    width: 4em;
+}
+.version-col {
+	width: 6em;
+}
+.date-col {
+	width: 8em;
+}
+.files-col {
+	width: 11em;
+}
+.download_all_files {
+	margin-top: 1em;
+}
+
+/* Contact */
+
+.contact .form {
+	margin: 1em 0em 1em 0em;
+	font-size: 16px;
+	padding: 0 1em;
+	background:#f8f8f8;
+}
+.contact .textarea {
+	height: 16.2em;
+	margin-top: 1.6em;
+    padding-top: 0.5em;
+}
+
+/* Login */
+
+.login .form {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.login .button {
+	margin-top: 15px;
+}
+
+/* Profile */
+
+.profile-col {
+	width: 19em;
+}
+.profile-company {
+	margin-top: 2em;
+}

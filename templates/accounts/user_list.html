@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row page-header">
+   <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+        <h2>
+            Users
+        </h2>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-10 col-lg-10 text-right">
+        <h2>
+            <a href="{% url 'accounts:register' %}" type="button" class="btn btn-primary btn-lg">Create User</a>
+        </h2>
+    </div>
+</div>
+
+{% if users %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Last name</th>
+                        <th>First name</th>
+                        <th>Login</th>
+                        <th>E-mail</th>
+                        {% if request.user.is_staff %}
+                            <th>Client</th>
+                        {% endif %}
+                        <th>Date joined</th>
+                        <th>Last login</th>
+                        <th>Active</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users|dictsort:"last_name" %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        {% if request.user.is_staff %}
+                            <td>{% if user.client %} {{ user.client }} {% else %}{% endif %}</td>
+                        {% endif %}
+                        <td>{{ user.date_joined }}</td>
+                        <td>{% if user.last_login %}{{ user.last_login }}{% endif %}</td>
+                        {% if user.is_active %}
+                            <td><span class="glyphicon glyphicon-ok text-success"></span></td>
+                        {% else %}
+                            <td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+                        {% endif %}
+                        <td><a href="{% url 'accounts:user-update' user.id %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 big_message_box">
+        <h1>No Users</h1>
+        <p>Go to <a href="{% url 'version:version-list' %}">the main page</a></p>
+    </div>
+</div>
+{% endif %}
+
+{% endblock content %}

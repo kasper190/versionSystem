@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row page-header">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2>
+            Profile
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+        <div class="table-responsive">
+            <table class="table">
+                <tr class="profile-col">
+                    <td class="profile-col"><strong>First name</strong></td>
+                    <td>{{ user.first_name }}</td>
+                </tr>
+                <tr class="profile-col">
+                    <td class="profile-col"><strong>Last name</strong></td>
+                    <td>{{ user.last_name }}</td>
+                </tr>
+                <tr class="profile-col">
+                    <td class="profile-col"><strong>Login</strong></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-col"><strong>E-mail</strong></td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-col"><strong>Date joined</strong></td>
+                    <td>{{ user.date_joined }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-col"><strong>Last login</strong></td>
+                    <td>{{ user.last_login }}</td>
+                </tr>
+            </table>
+            <a class="btn btn-primary" id="btn-login" href="{% url 'accounts:password-change' %}">Password Change</a>
+        </div>
+    </div>
+</div>
+
+{% if user.client.client_name %}
+<div class="row profile-company">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <td class="profile-col"><strong>Company name</strong></td>
+                    <td>{{ user.client.client_name }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-col"><strong>EIN</strong></td>
+                    <td >{{ user.client.ein }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-col"><strong>Address</strong></td>
+                    <td>
+                        <span>{{ user.client.street }}</span><br />
+                        <span>{{ user.client.zipcode }}, {{ user.client.city }}</span><br />
+                        <span>phone number: {{ user.client.phone_number }}</span><br />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock content %}
